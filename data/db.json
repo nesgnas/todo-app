@@ -1,0 +1,55 @@
+{
+  "ids": {
+    "User": 3,
+    "Credential": 3,
+    "Roles": 3,
+    "Permission": 3,
+    "AccessControl": 5,
+    "Project": 3,
+    "Todo": 5,
+    "UserPermission": 3,
+    "ProjectPermisisonParticipant": 3
+  },
+  "models": {
+    "User": {
+      "1": "{\"userName\":\"Sang\",\"userInfo\":\"ng\",\"id\":\"1\"}",
+      "2": "{\"userName\":\"Nam\",\"userInfo\":\"ngs\",\"id\":\"2\"}"
+    },
+    "Credential": {
+      "1": "{\"password\":\"1111\",\"isNewest\":true,\"userId\":\"1\",\"id\":\"1\"}",
+      "2": "{\"password\":\"1111\",\"isNewest\":true,\"userId\":\"2\",\"id\":\"2\"}"
+    },
+    "Roles": {
+      "1": "{\"typeOfRoles\":\"OWNER\",\"id\":\"1\"}",
+      "2": "{\"typeOfRoles\":\"VIEWER\",\"id\":\"2\"}"
+    },
+    "Permission": {
+      "1": "{\"typeOfPermist\":\"READ\",\"id\":\"1\"}",
+      "2": "{\"typeOfPermist\":\"WRITE\",\"id\":\"2\"}"
+    },
+    "AccessControl": {
+      "1": "{\"rolesId\":\"1\",\"permissionId\":\"1\",\"id\":\"1\"}",
+      "2": "{\"rolesId\":\"1\",\"permissionId\":\"2\",\"id\":\"2\"}",
+      "3": "{\"rolesId\":\"2\",\"permissionId\":\"2\",\"id\":\"3\"}",
+      "4": "{\"rolesId\":\"2\",\"permissionId\":\"1\",\"id\":\"4\"}"
+    },
+    "Project": {
+      "1": "{\"projectInfo\":\"cai dau tien\",\"userId\":\"1\",\"id\":\"1\"}",
+      "2": "{\"projectInfo\":\"cai dau tien nhung cua nguoi thu hai\",\"userId\":\"2\",\"id\":\"2\"}"
+    },
+    "Todo": {
+      "1": "{\"todoContent\":\"lan dau\",\"userId\":\"1\",\"projectId\":\"1\",\"id\":\"1\"}",
+      "2": "{\"todoContent\":\"lan 2\",\"userId\":\"1\",\"projectId\":\"1\",\"id\":\"2\"}",
+      "3": "{\"todoContent\":\"lan 13213\",\"userId\":\"1\",\"projectId\":\"1\",\"id\":\"3\"}",
+      "4": "{\"todoContent\":\"lan 13213\",\"userId\":\"1\",\"projectId\":\"2\",\"id\":\"4\"}"
+    },
+    "UserPermission": {
+      "1": "{\"userId\":\"1\",\"accessControlId\":\"4\",\"id\":\"1\"}",
+      "2": "{\"userId\":\"2\",\"accessControlId\":\"2\",\"id\":\"2\"}"
+    },
+    "ProjectPermisisonParticipant": {
+      "1": "{\"userPermissionId\":\"1\",\"projectId\":\"1\",\"id\":\"1\"}",
+      "2": "{\"userPermissionId\":\"2\",\"projectId\":\"1\",\"id\":\"2\"}"
+    }
+  }
+}
