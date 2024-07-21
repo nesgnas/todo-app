@@ -1,6 +1,6 @@
 import {inject, Getter} from '@loopback/core';
 import {DefaultCrudRepository, repository, BelongsToAccessor} from '@loopback/repository';
-import {DbDataSource} from '../datasources';
+import { MongodbDataSource} from '../datasources';
 import {ProjectPermisisonParticipant, ProjectPermisisonParticipantRelations, UserPermission, Project} from '../models';
 import {UserPermissionRepository} from './user-permission.repository';
 import {ProjectRepository} from './project.repository';
@@ -16,7 +16,7 @@ export class ProjectPermisisonParticipantRepository extends DefaultCrudRepositor
   public readonly project: BelongsToAccessor<Project, typeof ProjectPermisisonParticipant.prototype.id>;
 
   constructor(
-    @inject('datasources.db') dataSource: DbDataSource, @repository.getter('UserPermissionRepository') protected userPermissionRepositoryGetter: Getter<UserPermissionRepository>, @repository.getter('ProjectRepository') protected projectRepositoryGetter: Getter<ProjectRepository>,
+    @inject('datasources.mongodb') dataSource: MongodbDataSource, @repository.getter('UserPermissionRepository') protected userPermissionRepositoryGetter: Getter<UserPermissionRepository>, @repository.getter('ProjectRepository') protected projectRepositoryGetter: Getter<ProjectRepository>,
   ) {
     super(ProjectPermisisonParticipant, dataSource);
     this.project = this.createBelongsToAccessorFor('project', projectRepositoryGetter,);

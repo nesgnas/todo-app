@@ -1,6 +1,6 @@
 import {inject, Getter} from '@loopback/core';
 import {DefaultCrudRepository, repository, HasManyRepositoryFactory} from '@loopback/repository';
-import {DbDataSource} from '../datasources';
+import { MongodbDataSource} from '../datasources';
 import {User, UserRelations, Credential, Todo, Project, UserPermission} from '../models';
 import {CredentialRepository} from './credential.repository';
 import {TodoRepository} from './todo.repository';
@@ -22,7 +22,7 @@ export class UserRepository extends DefaultCrudRepository<
   public readonly userPermissions: HasManyRepositoryFactory<UserPermission, typeof User.prototype.id>;
 
   constructor(
-    @inject('datasources.db') dataSource: DbDataSource, @repository.getter('CredentialRepository') protected credentialRepositoryGetter: Getter<CredentialRepository>, @repository.getter('TodoRepository') protected todoRepositoryGetter: Getter<TodoRepository>, @repository.getter('ProjectRepository') protected projectRepositoryGetter: Getter<ProjectRepository>, @repository.getter('UserPermissionRepository') protected userPermissionRepositoryGetter: Getter<UserPermissionRepository>,
+    @inject('datasources.mongodb') dataSource: MongodbDataSource, @repository.getter('CredentialRepository') protected credentialRepositoryGetter: Getter<CredentialRepository>, @repository.getter('TodoRepository') protected todoRepositoryGetter: Getter<TodoRepository>, @repository.getter('ProjectRepository') protected projectRepositoryGetter: Getter<ProjectRepository>, @repository.getter('UserPermissionRepository') protected userPermissionRepositoryGetter: Getter<UserPermissionRepository>,
   ) {
     super(User, dataSource);
     this.userPermissions = this.createHasManyRepositoryFactoryFor('userPermissions', userPermissionRepositoryGetter,);

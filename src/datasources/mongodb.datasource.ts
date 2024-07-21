@@ -1,16 +1,13 @@
 import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
 
+
+
 const config = {
   name: 'mongodb',
   connector: 'mongodb',
-  url: '',
-  host: '',
-  port: 0,
-  user: '',
-  password: '',
-  database: '',
-  useNewUrlParser: true
+  url: 'mongodb+srv://admin:admin@atlascluster.tkubpsf.mongodb.net/todoApp',
+  useNewUrlParser: true,
 };
 
 // Observe application's life cycle to disconnect the datasource when

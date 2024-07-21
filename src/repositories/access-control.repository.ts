@@ -1,6 +1,6 @@
 import {inject, Getter} from '@loopback/core';
 import {DefaultCrudRepository, repository, BelongsToAccessor, HasManyRepositoryFactory} from '@loopback/repository';
-import {DbDataSource} from '../datasources';
+import { MongodbDataSource} from '../datasources';
 import {AccessControl, AccessControlRelations, Roles, Permission, UserPermission} from '../models';
 import {RolesRepository} from './roles.repository';
 import {PermissionRepository} from './permission.repository';
@@ -19,7 +19,7 @@ export class AccessControlRepository extends DefaultCrudRepository<
   public readonly userPermissions: HasManyRepositoryFactory<UserPermission, typeof AccessControl.prototype.id>;
 
   constructor(
-    @inject('datasources.db') dataSource: DbDataSource, @repository.getter('RolesRepository') protected rolesRepositoryGetter: Getter<RolesRepository>, @repository.getter('PermissionRepository') protected permissionRepositoryGetter: Getter<PermissionRepository>, @repository.getter('UserPermissionRepository') protected userPermissionRepositoryGetter: Getter<UserPermissionRepository>,
+    @inject('datasources.mongodb') dataSource: MongodbDataSource, @repository.getter('RolesRepository') protected rolesRepositoryGetter: Getter<RolesRepository>, @repository.getter('PermissionRepository') protected permissionRepositoryGetter: Getter<PermissionRepository>, @repository.getter('UserPermissionRepository') protected userPermissionRepositoryGetter: Getter<UserPermissionRepository>,
   ) {
     super(AccessControl, dataSource);
     this.userPermissions = this.createHasManyRepositoryFactoryFor('userPermissions', userPermissionRepositoryGetter,);

@@ -19,11 +19,17 @@ import {
 } from '@loopback/rest';
 import {User} from '../models';
 import {UserRepository} from '../repositories';
+import {service} from '@loopback/core';
+import {UserService} from '../services/user.service';
 
 export class UserController {
   constructor(
     @repository(UserRepository)
     public userRepository : UserRepository,
+
+    @service(UserService)
+    public userService : UserService
+
   ) {}
 
   @post('/users')
@@ -73,7 +79,7 @@ export class UserController {
   async find(
     @param.filter(User) filter?: Filter<User>,
   ): Promise<User[]> {
-    return this.userRepository.find(filter);
+    return this.userService.getUser(filter)
   }
 
   @patch('/users')

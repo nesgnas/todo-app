@@ -1,6 +1,6 @@
 import {inject, Getter} from '@loopback/core';
 import {DefaultCrudRepository, repository, HasManyRepositoryFactory} from '@loopback/repository';
-import {DbDataSource} from '../datasources';
+import { MongodbDataSource} from '../datasources';
 import {Roles, RolesRelations, AccessControl} from '../models';
 import {AccessControlRepository} from './access-control.repository';
 
@@ -13,7 +13,7 @@ export class RolesRepository extends DefaultCrudRepository<
   public readonly accessControls: HasManyRepositoryFactory<AccessControl, typeof Roles.prototype.id>;
 
   constructor(
-    @inject('datasources.db') dataSource: DbDataSource, @repository.getter('AccessControlRepository') protected accessControlRepositoryGetter: Getter<AccessControlRepository>,
+    @inject('datasources.mongodb') dataSource: MongodbDataSource, @repository.getter('AccessControlRepository') protected accessControlRepositoryGetter: Getter<AccessControlRepository>,
   ) {
     super(Roles, dataSource);
     this.accessControls = this.createHasManyRepositoryFactoryFor('accessControls', accessControlRepositoryGetter,);

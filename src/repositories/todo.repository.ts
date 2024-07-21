@@ -1,6 +1,6 @@
 import {inject, Getter} from '@loopback/core';
 import {DefaultCrudRepository, repository, BelongsToAccessor} from '@loopback/repository';
-import {DbDataSource} from '../datasources';
+import { MongodbDataSource} from '../datasources';
 import {Todo, TodoRelations, User, Project} from '../models';
 import {UserRepository} from './user.repository';
 import {ProjectRepository} from './project.repository';
@@ -16,7 +16,7 @@ export class TodoRepository extends DefaultCrudRepository<
   public readonly project: BelongsToAccessor<Project, typeof Todo.prototype.id>;
 
   constructor(
-    @inject('datasources.db') dataSource: DbDataSource, @repository.getter('UserRepository') protected userRepositoryGetter: Getter<UserRepository>, @repository.getter('ProjectRepository') protected projectRepositoryGetter: Getter<ProjectRepository>,
+    @inject('datasources.mongodb') dataSource: MongodbDataSource, @repository.getter('UserRepository') protected userRepositoryGetter: Getter<UserRepository>, @repository.getter('ProjectRepository') protected projectRepositoryGetter: Getter<ProjectRepository>,
   ) {
     super(Todo, dataSource);
     this.project = this.createBelongsToAccessorFor('project', projectRepositoryGetter,);

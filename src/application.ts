@@ -9,6 +9,7 @@ import {RestApplication} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {MySequence} from './sequence';
+import {MongodbDataSource} from './datasources';
 //import {MongodbDataSource} from './datasources';
 
 export {ApplicationConfig};
@@ -19,7 +20,7 @@ export class TodoAppApplication extends BootMixin(
   constructor(options: ApplicationConfig = {}) {
     super(options);
 
-    //this.dataSource(MongodbDataSource)
+    // this.dataSource(MongodbDataSource)
 
     // Set up the custom sequence
     this.sequence(MySequence);
