@@ -82,6 +82,7 @@ export class UserController {
     return this.userService.getUser(filter)
   }
 
+
   @patch('/users')
   @response(200, {
     description: 'User PATCH success count',
