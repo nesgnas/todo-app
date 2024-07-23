@@ -25,12 +25,44 @@ import {UserService} from '../services/user.service';
 export class UserController {
   constructor(
     @repository(UserRepository)
-    public userRepository : UserRepository,
+    public userRepository: UserRepository,
 
     @service(UserService)
-    public userService : UserService
-
+    public userService: UserService
   ) {}
+
+  @post('/signup')
+  @response(200, {
+    description: 'User model instance',
+    content: {'application/json': {schema: getModelSchemaRef(User)}},
+  })
+  async signup(
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: getModelSchemaRef(User, {
+            title: 'NewUser',
+            exclude: ['id'],
+          }),
+        },
+      },
+    })
+      user: Omit<User, 'id'>,
+  ): Promise<User> {
+    return this.userService.signup(user);
+  }
+
+
+  @post('/login')
+  @response(200, {
+    description: 'User model instance',
+    content: {'application/json': {schema: getModelSchemaRef(User)}},
+  })
+  async login() : Promise<User> {
+    return this.userService.login();
+  }
+
+  //testing
 
   @post('/users')
   @response(200, {
@@ -48,7 +80,7 @@ export class UserController {
         },
       },
     })
-    user: Omit<User, 'id'>,
+      user: Omit<User, 'id'>,
   ): Promise<User> {
     return this.userRepository.create(user);
   }
@@ -96,7 +128,7 @@ export class UserController {
         },
       },
     })
-    user: User,
+      user: User,
     @param.where(User) where?: Where<User>,
   ): Promise<Count> {
     return this.userRepository.updateAll(user, where);
@@ -131,7 +163,7 @@ export class UserController {
         },
       },
     })
-    user: User,
+      user: User,
   ): Promise<void> {
     await this.userRepository.updateById(id, user);
   }

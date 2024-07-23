@@ -4,7 +4,7 @@ import {UserRepository} from '../repositories';
 import {User} from '../models';
 
 @injectable()
-export class UserService {  
+export class UserService {
   constructor(
    @repository(UserRepository)
    public userRepository : UserRepository
@@ -14,4 +14,11 @@ export class UserService {
     return this.userRepository.find(filter);
   }
 
+  login(user: User) {
+    return this.userRepository.create(user);
+  }
+
+  signup(user: User) {
+    return this.userRepository.create(user);
+  }
 }
